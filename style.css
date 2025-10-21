@@ -404,37 +404,292 @@ body {
     }
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-    .header {
-        flex-direction: column;
-        text-align: center;
-        padding: 30px 20px;
+/* Enhanced Responsive Design */
+
+/* Large screens (1200px and up) */
+@media (min-width: 1200px) {
+    .container {
+        max-width: 1140px;
     }
     
     .profile-section {
-        flex-direction: column;
-        margin-bottom: 20px;
+        min-width: 400px;
+    }
+}
+
+/* Medium screens (992px to 1199px) */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .container {
+        max-width: 960px;
     }
     
-    .profile-image {
-        margin-right: 0;
-        margin-bottom: 20px;
+    .header {
+        padding: 35px;
+    }
+    
+    .profile-info .name {
+        font-size: 2.2rem;
+    }
+    
+    .profile-info .title {
+        font-size: 1.2rem;
+    }
+}
+
+/* Tablets (768px to 991px) */
+@media (max-width: 991px) and (min-width: 768px) {
+    .container {
+        max-width: 720px;
+    }
+    
+    .header {
+        padding: 30px;
     }
     
     .profile-info .name {
         font-size: 2rem;
     }
     
+    .profile-info .title {
+        font-size: 1.1rem;
+    }
+    
+    .profile-info .description {
+        font-size: 0.95rem;
+    }
+    
+    .section {
+        padding: 25px;
+    }
+    
+    .section-title {
+        font-size: 1.4rem;
+    }
+}
+
+/* Small tablets and large phones (576px to 767px) */
+@media (max-width: 767px) and (min-width: 576px) {
+    body {
+        padding: 15px;
+    }
+    
+    .container {
+        max-width: 540px;
+    }
+    
+    .header {
+        padding: 25px 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-section {
+        flex-direction: column;
+        margin-bottom: 20px;
+        min-width: 100%;
+    }
+    
+    .profile-image {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 100px;
+        height: 100px;
+    }
+    
+    .profile-info .name {
+        font-size: 1.8rem;
+    }
+    
+    .profile-info .title {
+        font-size: 1.1rem;
+    }
+    
+    .profile-info .description {
+        font-size: 0.9rem;
+    }
+    
     .contact-info {
         align-items: center;
+        width: 100%;
     }
     
     .main-content {
-        flex-direction: column;
+        gap: 20px;
     }
     
     .section {
         padding: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .section-title {
+        font-size: 1.3rem;
+    }
+    
+    .timeline {
+        padding-left: 25px;
+    }
+    
+    .timeline-item::before {
+        left: -28px;
+    }
+    
+    .interests-container {
+        justify-content: center;
+    }
+}
+
+/* Mobile phones (575px and below) */
+@media (max-width: 575px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        max-width: 100%;
+    }
+    
+    .header {
+        padding: 20px 15px;
+        flex-direction: column;
+        text-align: center;
+        border-radius: 10px;
+    }
+    
+    .profile-section {
+        flex-direction: column;
+        margin-bottom: 20px;
+        min-width: 100%;
+    }
+    
+    .profile-image {
+        margin-right: 0;
+        margin-bottom: 15px;
+        width: 90px;
+        height: 90px;
+        border-width: 3px;
+    }
+    
+    .profile-info .name {
+        font-size: 1.6rem;
+    }
+    
+    .profile-info .title {
+        font-size: 1rem;
+    }
+    
+    .profile-info .description {
+        font-size: 0.85rem;
+    }
+    
+    .contact-info {
+        align-items: center;
+        width: 100%;
+        gap: 10px;
+    }
+    
+    .contact-item {
+        font-size: 0.85rem;
+    }
+    
+    .main-content {
+        gap: 15px;
+    }
+    
+    .section {
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 10px;
+    }
+    
+    .section-title {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .timeline {
+        padding-left: 20px;
+    }
+    
+    .timeline::before {
+        left: 5px;
+    }
+    
+    .timeline-item::before {
+        left: -25px;
+        width: 10px;
+        height: 10px;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-content h4 {
+        font-size: 0.95rem;
+    }
+    
+    .timeline-content p {
+        font-size: 0.9rem;
+    }
+    
+    .skill-name {
+        font-size: 0.9rem;
+    }
+    
+    .skill-bar {
+        height: 8px;
+    }
+    
+    .language-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .language-level {
+        font-size: 0.8rem;
+    }
+    
+    .interests-container {
+        justify-content: center;
+        gap: 10px;
+    }
+    
+    .interest-item {
+        padding: 12px;
+        min-width: 70px;
+    }
+    
+    .interest-item i {
+        font-size: 1.3rem;
+    }
+    
+    .interest-item span {
+        font-size: 0.8rem;
+    }
+}
+
+/* Very small screens (320px and below) */
+@media (max-width: 320px) {
+    .profile-info .name {
+        font-size: 1.4rem;
+    }
+    
+    .profile-info .title {
+        font-size: 0.95rem;
+    }
+    
+    .section-title {
+        font-size: 1.1rem;
+    }
+    
+    .timeline-content h3 {
+        font-size: 1rem;
+    }
+    
+    .interest-item {
+        min-width: 60px;
+        padding: 10px;
     }
 }
