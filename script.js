@@ -156,3 +156,150 @@ document.addEventListener('DOMContentLoaded', () => {
     // Set initial active link
     setActiveLink();
 });
+
+// ===================================
+// IMPROVED MOBILE MENU HANDLING
+// ===================================
+
+// Prevent body scroll when mobile menu is open
+navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navMenu.classList.toggle('active');
+    
+    // Toggle body scroll
+    if (navMenu.classList.contains('active')) {
+        document.body.style.overflow = 'hidden';
+    } else {
+        document.body.style.overflow = '';
+    }
+});
+
+// Close menu when clicking outside (enhanced for mobile)
+document.addEventListener('click', (e) => {
+    const isClickInsideNav = navMenu.contains(e.target) || navToggle.contains(e.target);
+    
+    if (!isClickInsideNav && navMenu.classList.contains('active')) {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Close menu on escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// ===================================
+// IMPROVE FORM EXPERIENCE ON MOBILE
+// ===================================
+
+if (contactForm) {
+    // Add inputmode for better mobile keyboard
+    document.getElementById('email').setAttribute('inputmode', 'email');
+    document.getElementById('name').setAttribute('autocomplete', 'name');
+    document.getElementById('email').setAttribute('autocomplete', 'email');
+    
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        // Add loading state
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.textContent;
+        submitBtn.textContent = 'Sending...';
+        submitBtn.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+            // Show success message
+            alert('Thank you for your message! I will get back to you soon.');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Reset button
+            submitBtn.textContent = originalText;
+            submitBtn.disabled = false;
+        }, 1000);
+    });
+}
+
+// ===================================
+// TOUCH-OPTIMIZED INTERACTIONS
+// ===================================
+
+// Add touch feedback for mobile
+const addTouchFeedback = () => {
+    const touchElements = document.querySelectorAll('.btn, .nav-link, .project-link, .contact-item');
+    
+    touchElements.forEach(element => {
+        element.addEventListener('touchstart', () => {
+            element.style.transform = 'scale(0.98)';
+        });
+        
+        element.addEventListener('touchend', () => {
+            element.style.transform = '';
+        });
+    });
+};
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('Portfolio loaded successfully');
+    
+    // Set initial active link
+    setActiveLink();
+    
+    // Add touch feedback for mobile
+    addTouchFeedback();
+    
+    // Check if user is on mobile
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+    if (isMobile) {
+        document.body.classList.add('mobile-device');
+    }
+});
+
+// ===================================
+// IMPROVED SMOOTH SCROLLING FOR MOBILE
+// ===================================
+
+// Check if smooth scrolling is supported and not on mobile (for performance)
+const supportsSmoothScroll = 'scrollBehavior' in document.documentElement.style;
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const target = document.querySelector(targetId);
+        
+        if (target) {
+            e.preventDefault();
+            
+            const offsetTop = target.offsetTop - 80;
+            
+            // Close mobile menu if open
+            if (navMenu.classList.contains('active')) {
+                navToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Use smooth scroll if supported and not on mobile for better performance
+            if (supportsSmoothScroll && !/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            } else {
+                // Fallback for non-supporting browsers
+                window.scrollTo(0, offsetTop);
+            }
+        }
+    });
+});
